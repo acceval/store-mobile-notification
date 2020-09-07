@@ -25,6 +25,8 @@ const fcm = admin.messaging();
     var body = req.body.body;
     var message = req.body.message;
 
+    console.log(`user with token sent ::: ${token}`)
+
     const payload = {
       notification: { title: title, body: body, icon: 'your-icon-url',sound : "default", vibrate : "true"},
         data: { click_action: 'FLUTTER_NOTIFICATION_CLICK', message: message}
