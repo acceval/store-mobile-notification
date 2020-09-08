@@ -40,6 +40,32 @@ const fcm = admin.messaging();
     res.send(token)
   });
 
+  app.post('/sendToTopic',(req, res) => {
+
+    var title = req.body.title;
+    var body = req.body.body;
+    var message = req.body.message;
+    var topic = req.body.topic;
+
+    console.log(`Sent To user of ${topic}`)
+
+    const payload = {
+      notification: { title: title, body: body, icon: 'your-icon-url',sound : "default", vibrate : "true"},
+        data: { click_action: 'FLUTTER_NOTIFICATION_CLICK', message: message}
+      
+    };
+
+
+    fcm.sendToTopic(topic, payload)
+
+    res.send(topic)
+  });
+
+
   app.listen(port, () => {
     console.log(`Notification server listening at http://localhost:${port}`)
   })
+
+
+
+  
